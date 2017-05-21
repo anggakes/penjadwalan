@@ -27,7 +27,7 @@ var user;
 localforage.getItem('user').then((value) => {
 
     if(value == null){
-        window.location.replace("/login/");
+        window.location.replace("/login/index.php");
     }else{
         user = value;
     var myApp = new Framework7();
