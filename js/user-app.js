@@ -5,12 +5,12 @@ checkLogin = function (){
     localforage.getItem('login').then((value) => {
 
         if(value == null){
-             window.location.replace("/login/");
+             window.location.replace("/login/index.php");
         }
 
         console.log(value);
     }).catch((err) => {
-            window.location.replace("/login/");
+            window.location.replace("/login/index.php");
     });
 
 }

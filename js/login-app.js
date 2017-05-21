@@ -72,10 +72,10 @@ var vue = new Vue({
                             localforage.setItem('user', snapshot.val()).then((value) => {
                             if(snapshot.val().role == 'user'){
 
-                                 window.location.replace("/user/");
+                                 window.location.replace("/user/index.php");
                             }else{
 
-                                window.location.replace("/manager/");
+                                window.location.replace("/manager/index.php");
                             }
 
 
