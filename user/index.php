@@ -125,6 +125,11 @@
         {{detailKegiatan.anggota}}
         <br>
         </p>
+        <p class="buttons-row">
+<!--          <a href="#" class="button">Button 1</a>-->
+          <a href="#" class="button">Selesai Kegiatan</a>
+          <a  v-bind:href="/page-edit-form/" class="button" v-on:click="editFunc(detailKegiatan)" >Edit</a>
+        </p>
       </div>
     </div>
 
@@ -146,6 +151,85 @@
             <div class="item-inner">
               <div class="item-title label">Nama</div>
               <div class="item-input">
+                <input v-model="KegiatanNew.nama"  type="text" id="name" name="name" placeholder="Nama Kegiatan">
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Tanggal</div>
+              <div class="item-input">
+                <input v-model="KegiatanNew.tanggal_kegiatan" id="tanggal_kegiatan" type="date" placeholder="Tanggal Kegiatan"  >
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Penanggung Jawab</div>
+              <div class="item-input">
+                <input v-model="KegiatanNew.penanggung_jawab"  type="text" id="penanggung_jawab" name="name" placeholder="Penanggung Jawab">
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="align-top">
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Anggota</div>
+              <div class="item-input">
+                <textarea v-model="KegiatanNew.anggota"  placeholder="Anggota kegiatan"></textarea>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="align-top">
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Deskripsi</div>
+              <div class="item-input">
+                <textarea v-model="KegiatanNew.deskripsi"  placeholder="Deskripsi singkat kegiatan"></textarea>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <p>
+          <f7-grid>
+            <f7-col>
+              <input type="submit" class="button button-fill color-blue" value="Simpan">
+            </f7-col>
+          </f7-grid>
+        </p>
+
+
+      </ul>
+    </form>
+
+</template>
+
+
+
+<!-- User Form  Page Template -->
+<template id="page-edit-form">
+  <f7-page>
+    <f7-navbar title="Tambah Kegiatan" back-link="Back" sliding></f7-navbar>
+    <form class="list-block"  v-on:submit.prevent="updateKegiatan">
+      <ul>
+        <!-- Text inputs -->
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Nama</div>
+              <div class="item-input">
+                <input v-model="KegiatanNew.key"  type="text" id="name" name="name" placeholder="Nama Kegiatan">
                 <input v-model="KegiatanNew.nama"  type="text" id="name" name="name" placeholder="Nama Kegiatan">
               </div>
             </div>

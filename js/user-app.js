@@ -59,6 +59,11 @@ localforage.getItem('user').then((value) => {
             return {
                 detailKegiatan: detailKegiatanGlobal
             }
+        },
+        methods : {
+            editFunc : function (detail){
+                detailKegiatanGlobal = detail;
+            }
         }
     })
 
@@ -100,6 +105,52 @@ localforage.getItem('user').then((value) => {
     })
 
 
+    Vue.component('page-edit-form', {
+        template: '#page-edit-form',
+        data : function (){
+            return{
+                KegiatanNew : detailKegiatanGlobal,
+            }
+        },
+        methods:{
+            updateKegiatan: function () {
+                console.log(this.KegiatanNew['.key']);
+                tanggal = new Date(this.KegiatanNew.tanggal_kegiatan).getTime();
+                console.log(tanggal);
+                this.KegiatanNew.tanggal_kegiatan  = tanggal;
+
+                const childKey = this.KegiatanNew['.key'];
+                kegiatan = this.KegiatanNew;
+
+                delete kegiatan['.key'];
+
+                this.$firebaseRefs.items.child(childKey).set(kegiatan)
+
+                this.KegiatanNew.nama = '';
+                this.KegiatanNew.tanggal_kegiatan = '';
+                this.KegiatanNew.penanggung_jawab = '';
+                this.KegiatanNew.anggota = '';
+                this.KegiatanNew.deskripsi = '';
+                this.key = '';
+
+                myApp.alert('data berhasil di edit');
+                location.reload();
+                // create a copy of the item
+
+            }
+        },
+        created : function(){
+
+            var myCalendar = myApp.calendar({
+                input: '#tanggal_kegiatan'
+            });
+
+            this.$bindAsArray('items', kegiatanRef);
+
+        }
+    })
+
+
 
 // Init App
 
@@ -119,17 +170,16 @@ localforage.getItem('user').then((value) => {
                     component: 'page-kegiatan_form',
                 },
                 {
+                    path: '/page-edit-form/',
+                    component: 'page-edit-form',
+                },
+                {
                     path: '/detail/:key/',
                     component: 'page-detail-kegiatan',
                 }
 
             ]
         },
-        methods : {
-            detailFunc : function (detail){
-                detailKegiatanGlobal = detail;
-            }
-        }
 
     });
 

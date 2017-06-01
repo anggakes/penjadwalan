@@ -70,6 +70,28 @@ Vue.component('page-kegiatan', {
             console.log(snapshot.val());
       });
 
+  },
+  methods : {
+    detailFunc : function (detail){
+      detailKegiatanGlobal = detail;
+    }
+  }
+});
+
+Vue.component('page-detail-kegiatan', {
+  template: '#page-detail-kegiatan',
+  firebase : {
+    // kegiatanDetail : firebase.database().ref("kegiatan/"+ user.kecamatan_id+ '/'+ this.$route.params.key)
+  },
+  data:function () {
+    return {
+      detailKegiatan: detailKegiatanGlobal
+    }
+  },
+  methods : {
+    editFunc : function (detail){
+      detailKegiatanGlobal = detail;
+    }
   }
 })
 
@@ -92,6 +114,10 @@ new Vue({
       {
         path: '/page-kegiatan/:kecamatan_id/',
         component: 'page-kegiatan',
+      },
+      {
+        path: '/detail/:key/',
+        component: 'page-detail-kegiatan',
       }
 
     ]
@@ -100,6 +126,9 @@ new Vue({
     listKegiatanFunc : function (id) {
       kegiatanRef = firebase.database().ref("kegiatan/"+id);
       kegiatanGlobal = [];
+    },
+    detailFunc : function (detail){
+      detailKegiatanGlobal = detail;
     }
   }
 });

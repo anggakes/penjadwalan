@@ -236,13 +236,55 @@
               <div class="timeline-item-inner">
                 <strong>{{k.nama}}</strong><br> oleh:{{k.penanggung_jawab}}
                 <hr>
-                <!--<a v-bind:href="'/detail/'+k['.key']+'/'" v-on:click = 'detailFunc(k)'>lihat detail</a>-->
+                <a v-bind:href="'/detail/'+k['.key']+'/'" v-on:click = 'detailFunc(k)'>lihat detail</a>
               </div>
             </div>
           </div>
 
 
         </div>
+  </f7-page>
+</template>
+
+<!-- User Form  Page Template -->
+<template id="page-detail-kegiatan">
+  <f7-page>
+    <f7-navbar title="Detail Kegiatan" back-link="Back" sliding></f7-navbar>
+    <!-- Inset content block -->
+    <div class="content-block inset">
+      <div class="content-block-inner">
+        <p>
+
+        <h4>Nama Kegiatan</h4>
+        {{detailKegiatan.nama}}
+        <br>
+        <h4>Penganggung Jawab</h4>
+        {{detailKegiatan.penanggung_jawab}}
+        <br>
+        <h4>Tanggal Kegiatan</h4>
+        {{new Date (detailKegiatan.tanggal_kegiatan).toDateString()}}
+        <br>
+        <h4>Deskripsi</h4>
+        {{detailKegiatan.deskripsi}}
+        <br>
+        <h4>Anggota</h4>
+        {{detailKegiatan.anggota}}
+        <br>
+        <h4>Status</h4>
+        <span v-if="detailKegiatan.isSelesai==true">Selesai</span>
+        <span v-else>Belum Selesai</span>
+        <br>
+        </p>
+        <p class="buttons-row">
+          <!--          <a href="#" class="button">Button 1</a>-->
+          <a href="#" class="button">Beri Penilaian</a>
+<!--          <a  v-bind:href="/page-edit-form/" class="button" v-on:click="editFunc(detailKegiatan)" >Edit</a>-->
+        </p>
+      </div>
+    </div>
+
+
+
   </f7-page>
 </template>
 
