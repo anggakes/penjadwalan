@@ -179,7 +179,11 @@ localforage.getItem('user').then((value) => {
                 }
 
             ]
-        },
+        },methods : {
+            detailFunc : function (detail){
+                detailKegiatanGlobal = detail;
+            }
+        }
 
     });
 
